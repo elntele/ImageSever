@@ -4,14 +4,13 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.file.Files;
@@ -58,31 +57,39 @@ class Connection extends Thread {
 	}
 
 	public void run() {
-		// String pasta="8f69b";
-		String pasta = "não";
+//		String pasta="84e496";
+//		String pasta="946ec2";
+//		String pasta="bb9f9b";
+//		String pasta="5d498";
+//		String pasta="ea7d11";
+//		String pasta="135582";
+		String pasta="453bd5";
+		//String pasta = "não";
+		/*
 		try {
 			pasta = in.readUTF();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		*/
 		// nova parte
 
 		BufferedImage img = null;
 
 		// File fileResizing = new File("C:/Users/elnte/OneDrive/Área de
 		// Trabalho/"+pasta+"/"+pasta+".png");
-		String s1="/home/ubuntu" + "/" + pasta + "/" + pasta + ".png";
+//		String s1="/home/ubuntu" + "/" + pasta + "/" + pasta + ".png";
+		String s1="C:/Users/elnte/OneDrive/Área de Trabalho/"+pasta+"/"+pasta+".png";
 		System.out.println("ler o aqruivo "+ s1);
 		File fileResizing = new File(s1);
 
 		try {
 			img = ImageIO.read(fileResizing);
 
-			img = scale(img);
-			// ImageIO.write(bImage2, "jpg", new File("C:\\Users\\elnte\\OneDrive\\Área de
-			// Trabalho\\8f69b\\saida.jpg") );
-			String s2="/home/ubuntu" + "/" + pasta + "/saida.jpg";
+			img = scale(img);;
+			//String s2="/home/ubuntu" + "/" + pasta + "/saida.jpg";
+			String s2="C:/Users/elnte/OneDrive/Área de Trabalho/"+pasta+"/saida.jpg";
 			ImageIO.write(img, "jpg", new File(s2));
 
 		} catch (IOException e) {
@@ -90,11 +97,9 @@ class Connection extends Thread {
 		}
 
 		try {
-			// file=new FileInputStream("/home/ubuntu"+"/"+pasta+"/"+pasta+".png");
-
-			// File file = new File("C:/Users/elnte/OneDrive/Área de
-			// Trabalho/"+pasta+"/"+pasta+".png");
-			String s2="/home/ubuntu" + "/" + pasta + "/saida.jpg";
+			
+			//String s2="/home/ubuntu" + "/" + pasta + "/saida.jpg";
+			String s2="C:/Users/elnte/OneDrive/Área de Trabalho/"+pasta+"/saida.jpg";
 			File file = new File(s2);
 
 			// Reading a Image file from file system
@@ -102,13 +107,20 @@ class Connection extends Thread {
 			byte imageData[] = new byte[(int) file.length()];
 			imageInFile.read(imageData);
 			String imageDataString = new String(Base64.encodeBase64(imageData), "UTF-8");
-
+			// quando quise salvar o txt
+			PrintWriter salvaTexto = new PrintWriter("C:/Users/elnte/OneDrive/Área de Trabalho/"+pasta+"/"+pasta+".txt");
+			salvaTexto.println(imageDataString);
+			
+			salvaTexto.flush();
+			salvaTexto.close();
+			
+			//*****************
 			byte[] data = imageDataString.getBytes("UTF-8");
 			out.writeInt(data.length);
 			out.write(data);
 			imageInFile.close();
-			boolean result = Files.deleteIfExists(file.toPath());
-			System.out.println("arquivo s2 deletado: " + result);
+//			boolean result = Files.deleteIfExists(file.toPath());
+//			System.out.println("arquivo s2 deletado: " + result);
 
 		} catch (EOFException e) {
 			System.out.println("EOF:" + e.getMessage());
