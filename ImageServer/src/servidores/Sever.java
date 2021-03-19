@@ -80,25 +80,9 @@ class Connection extends Thread {
 			img = ImageIO.read(fileResizing);
 
 			img = scale(img);
-			//inicio da redundancia que tem que ser ermovida
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-			// ImageIO.write(img, "jpg", baos);
-			ImageIO.write(img, "jpg", baos);
-
-			byte[] encodedArray = baos.toByteArray();
-			baos.flush();
-
-			ByteArrayInputStream bis = new ByteArrayInputStream(encodedArray);
-			BufferedImage bImage2 = ImageIO.read(bis);
-			// fim da redundancia 
-			System.out.println("imagem que retornou do método "+img );
-			System.out.println("imagem do passos extras "+bImage2 );
 			// ImageIO.write(bImage2, "jpg", new File("C:\\Users\\elnte\\OneDrive\\Área de
 			// Trabalho\\8f69b\\saida.jpg") );
 			String s2="/home/ubuntu" + "/" + pasta + "/saida.jpg";
-			System.out.println("salvar o aqruivo "+s2);
-			//ImageIO.write(bImage2, "jpg", new File(s2));
 			ImageIO.write(img, "jpg", new File(s2));
 
 		} catch (IOException e) {
@@ -111,7 +95,6 @@ class Connection extends Thread {
 			// File file = new File("C:/Users/elnte/OneDrive/Área de
 			// Trabalho/"+pasta+"/"+pasta+".png");
 			String s2="/home/ubuntu" + "/" + pasta + "/saida.jpg";
-			System.out.println("ler o aqruivo recem salvo " + s2);
 			File file = new File(s2);
 
 			// Reading a Image file from file system
@@ -124,7 +107,6 @@ class Connection extends Thread {
 			out.writeInt(data.length);
 			out.write(data);
 			imageInFile.close();
-			System.out.println("imagem " + pasta + " enviada sucesso");
 			boolean result = Files.deleteIfExists(file.toPath());
 			System.out.println("arquivo s2 deletado: " + result);
 
@@ -142,15 +124,6 @@ class Connection extends Thread {
 	}
 
 	public static BufferedImage scale(BufferedImage img) {
-		
-		try {
-			if (!(img.equals(null))) {
-				System.out.println("A imagem não chegou nula no metodo de redução de imagem" );
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("A imagem chegou nula no metodo de redução de imagem" );
-		}
 		
 		int height = img.getHeight();
 		int width = img.getWidth();
@@ -204,15 +177,6 @@ class Connection extends Thread {
 			ret = scratchImage;
 		}
 		
-		try {
-			if (!(ret.equals(null))) {
-				System.out.println("A imagem não está retornando nulna o metodo de redução de imagem" );
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("A imagem está retornando nulna o metodo de redução de imagem" );
-		}
-
 		return ret;
 
 	}
