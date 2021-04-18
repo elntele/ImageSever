@@ -59,11 +59,11 @@ class Connection extends Thread {
 	public void run() {
 //		String pasta="84e496";
 //		String pasta="946ec2";
-//		String pasta="bb9f9b";
+		String pasta="bb9f9b";
 //		String pasta="5d498";
 //		String pasta="ea7d11";
 //		String pasta="135582";
-		String pasta="453bd5";
+//		String pasta="453bd5";
 		//String pasta = "não";
 		/*
 		try {
@@ -80,7 +80,7 @@ class Connection extends Thread {
 		// File fileResizing = new File("C:/Users/elnte/OneDrive/Área de
 		// Trabalho/"+pasta+"/"+pasta+".png");
 //		String s1="/home/ubuntu" + "/" + pasta + "/" + pasta + ".png";
-		String s1="C:/Users/elnte/OneDrive/Área de Trabalho/"+pasta+"/"+pasta+".png";
+		String s1="D:/pontos/"+pasta+"/"+pasta+".png";
 		System.out.println("ler o aqruivo "+ s1);
 		File fileResizing = new File(s1);
 
@@ -89,7 +89,7 @@ class Connection extends Thread {
 
 			img = scale(img);;
 			//String s2="/home/ubuntu" + "/" + pasta + "/saida.jpg";
-			String s2="C:/Users/elnte/OneDrive/Área de Trabalho/"+pasta+"/saida.jpg";
+			String s2="D:/pontos/"+pasta+"/saida.jpg";
 			ImageIO.write(img, "jpg", new File(s2));
 
 		} catch (IOException e) {
@@ -99,7 +99,7 @@ class Connection extends Thread {
 		try {
 			
 			//String s2="/home/ubuntu" + "/" + pasta + "/saida.jpg";
-			String s2="C:/Users/elnte/OneDrive/Área de Trabalho/"+pasta+"/saida.jpg";
+			String s2="D:/pontos/"+pasta+"/saida.jpg";
 			File file = new File(s2);
 
 			// Reading a Image file from file system
@@ -108,7 +108,7 @@ class Connection extends Thread {
 			imageInFile.read(imageData);
 			String imageDataString = new String(Base64.encodeBase64(imageData), "UTF-8");
 			// quando quise salvar o txt
-			PrintWriter salvaTexto = new PrintWriter("C:/Users/elnte/OneDrive/Área de Trabalho/"+pasta+"/"+pasta+".txt");
+			PrintWriter salvaTexto = new PrintWriter("D:/pontos/"+pasta+"/"+pasta+".txt");
 			salvaTexto.println(imageDataString);
 			
 			salvaTexto.flush();
