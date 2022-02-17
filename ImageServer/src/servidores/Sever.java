@@ -57,9 +57,11 @@ class Connection extends Thread {
 	}
 
 	public void run() {
+//		String pasta="taquaritinga";
+		String pasta="porto";
 //		String pasta="84e496";
 //		String pasta="946ec2";
-		String pasta="bb9f9b";
+//		String pasta="bb9f9b";
 //		String pasta="5d498";
 //		String pasta="ea7d11";
 //		String pasta="135582";
